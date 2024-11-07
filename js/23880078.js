@@ -16,27 +16,3 @@ async function loadData( request_api, type ) {
     document.getElementById( type ).innerHTML = template( context );
 }
 
-(
-    async function () {
-        await loadData( "products?page=1", "products" );
-        await loadData( "news?page=1", "news" );
-
-        document.querySelectorAll( '#products .card-body' ).forEach( ( card, idx ) => {
-            const title = card.querySelector( 'h5.card-title' );
-            const img = card.querySelector( 'img.card-img-top' );
-
-            idx = idx + 1;
-
-            card.addEventListener( 'mouseover', () => {
-                title.style.color = web_blue;
-                img.src = "images/icon-" + idx + "-active.png";
-            } );
-
-            card.addEventListener( 'mouseout', () => {
-                title.style.color = "black";
-                img.src = "images/icon-" + idx + ".png";
-            } );
-        } );
-
-    }
-)();

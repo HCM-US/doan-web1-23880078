@@ -35,11 +35,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="menu-header">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="index.html" aria-current="page">Home
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="about.html" aria-current="page">About
                                 <span class="visually-hidden">(current)</span>
                             </a>
@@ -69,9 +69,45 @@
         </nav>
     </header>
 
-    <section class="container py-5">
-        <h1>About Us</h1>
-    </section>
+    <div class="" id="detail">
+        <section class="container py-5">
+            <!-- content -->
+            <section class="container-fluid" id="content">
+                <div class="container">
+                    <div class="row py-3 px-5">
+                        <div class="col-md-8 card border-0 px-0 h-100" id="aboutus">
+                            <!-- DOM abous -->
+                        </div>
+                        <div class="col-md-4 card px-0 h-100 row">
+                            <div class="card-body" id="visions">
+                                <!-- DOM visions -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="container-fluid" id="testimonials">
+            <div class="container py-5">
+                <h5 class="card-title title-testimonials">Testimonials</h5>
+                <div class="row" id="testimonials-dom">
+                    <!-- DOM Testimonials -->
+                </div>
+            </div>
+        </section>
+
+        <!-- our team -->
+        <section class="container-fluid py-5">
+            <div class="container">
+                <h1>Our Team</h1>
+                <div class="row" id="ourteam">
+                    <!-- DOM team -->
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- footer -->
     <footer id="footer" class="container-fluid">
@@ -114,14 +150,6 @@
             </div>
         </div>
     </div>
-    <!-- Optional: Place to the bottom of scripts -->
-    <script>
-        const myModal = new bootstrap.Modal(
-            document.getElementById( "modalId" ),
-            options,
-        );
-    </script>
-
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -132,7 +160,105 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    <script id="aboutus-template" type="text/x-handlebars-template">
+        {{#each data}}
+        <div class="row g-0 px-5">
+              <h5 class="card-title title-content">{{name}}</h5>
+              <div class="col-md-4">
+                  <img src="{{thumbpath}}" class="img-fluid rounded-start rounded-3" alt="...">
+              </div>
+              <div class="col-md-8">
+                  <div class="card-body pt-0">
+                      <h3>Lorem ipsum dolor sit amet consectetur</h3>
+                      <div class="card-text text-black-50">{{{summary}}}</div>
+                      <p>
+                          <a href="#" onclick='loadData( "aboutus", "detail" );'>Read more</a>
+                      </p>
+                  </div>
+              </div>
+          </div>
+          {{/each}}
+    </script>
+
+    <script id="testimonials-dom-template" type="text/x-handlebars-template">
+        {{#each data}}
+        <div class="col-md-4 col-sm-12 d-flex">
+            <div class="">
+                <i class="fa-solid fa-quote-left"></i>
+            </div>
+            <div class="">
+                <p class="content-testimonials">{{summary}}</p>
+                <p class="text-white">{{name}}</p>
+                <p class="text-primary">{{email}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+    <script id="ourteam-template" type="text/x-handlebars-template">
+        {{#each data}}
+                <div class="col-lg-3 col-md-6 col-sm-12" onclick='loadData( "team/{{id}}", "detail" )'>
+                    <div class="">
+                        <img src="{{thumbpath}}" alt="" class="rounded-3">
+                    </div>
+                    <div class="py-3"><b>{{name}}</b></div>
+                    <div class="">{{summary}}</div>
+                </div>
+        {{/each}}
+    </script>
+
+    <script id="visions-template" type="text/x-handlebars-template">
+        <h5 class="card-title title-content">Our Vision</h5>
+        {{#each data}}
+        <div class="card border-0 px-0 h-100" onclick='loadData( "visions/{{id}}", "detail" )'>
+            <div class="row g-0">
+                <div class="col-sm-4">
+                    <img src="{{thumbpath}}" class="img-fluid rounded-start rounded-3" alt="...">
+                </div>
+                <div class="col-sm-8">
+                    <div class="card-body pt-0">
+                        <h3>{{name}}</h3>
+                        <div class="text-black-50">{{summary}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+
+    <script id="detail-template" type="text/x-handlebars-template">
+        <section class="container-fluid py-5">
+        {{#each data}}
+        <div class="container">
+           <div class="row">
+            <div class="col-lg-4 col-sm-12">
+                <img src="{{imagepath}}" alt="" class="w-100 rounded-3">
+            </div>
+            <div class="col-lg-8 col-sm-12">
+                 <h1 class="pb-3">{{name}}</h1>
+                 <div class="text-black-50">{{{description}}}</div>
+            </div>
+           </div>
+        </div>
+        {{/each}}
+       </section>
+    </script>
+
     <script src="js/23880078.js"></script>
+
+    <script>
+        (
+            async function () {
+                const request = await fetch( API + "visions/10" );
+                await loadData( "aboutus", "aboutus" );
+                await loadData( "visions", "visions" );
+                await loadData( "testimonials", "testimonials-dom" );
+                await loadData( "team", "ourteam" );
+            }
+        )();
+    </script>
 </body>
 
 </html>

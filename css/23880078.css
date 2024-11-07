@@ -4,7 +4,7 @@
     --web-green: #73c926;
     --web-primary: #5f697a;
 }
-   
+
 body {
     font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -18,7 +18,7 @@ h4 {
     font-family: 'Changa One', cursive;
     font-weight: 400;
 }
- 
+
 h1 {
     font-size: 60px;
     line-height: 60px;
@@ -198,4 +198,82 @@ h1 {
 #form-login button[type='submit'] {
     background-color: var(--web-blue);
     color: white
+}
+
+
+/* Content - Anput Us */
+#content a {
+    color: var(--web-blue);
+}
+
+#content .card-title {
+    /* color: white; */
+    font-family: 'Changa One', cursive;
+    /* font-size: 4rem; */
+}
+
+#content .title-content {
+    font-size: 4rem;
+}
+
+#content .title-signup {
+    font-size: 2rem;
+}
+
+#content .card-link {
+    color: var(--web-blue)
+}
+
+#content p.card-text {
+    color: var(--web-primary)
+}
+
+#content .card:last-child {
+    border: 0
+}
+
+#content .card:last-child label {
+    color: var(--web-primary)
+}
+
+#content .card:last-child button {
+    color: white;
+    font-family: 'Changa One', cursive;
+    font-size: 1.2rem;
+}
+
+
+/* testimonials - Anput Us */
+#testimonials,
+#testimonials .card {
+    background-color: var(--web-pink);
+}
+
+#testimonials .card-title {
+    color: white;
+    font-family: 'Changa One', cursive;
+    /* font-size: 4rem; */
+}
+
+#testimonials .title-testimonials {
+    font-size: 4rem;
+}
+
+#testimonials i {
+    font-size: 3rem;
+    padding-right: 20px;
+}
+
+#testimonials i,
+#testimonials .content-testimonials {
+    color: var(--web-primary);
+}
+
+#testimonials .content-testimonials {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
 }
