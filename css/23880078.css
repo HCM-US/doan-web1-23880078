@@ -1,0 +1,201 @@
+:root {
+    --web-pink: #fa97c2;
+    --web-blue: #2fa0d5;
+    --web-green: #73c926;
+    --web-primary: #5f697a;
+}
+   
+body {
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Changa One', cursive;
+    font-weight: 400;
+}
+ 
+h1 {
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: 900;
+}
+
+/* Header */
+#menu-header a {
+    display: block;
+    padding: 0 1.25rem;
+    font-weight: bold;
+    color: black;
+    font-family: 'Changa One', cursive;
+}
+
+#menu-header li.active a {
+    color: var(--web-blue);
+}
+
+#form-search i {
+    color: var(--web-green)
+}
+
+#form-search input {
+    width: 8rem
+}
+
+/* Banner */
+#banner {
+    background-image: url('/images//bg-banner.gif');
+}
+
+#banner>div {
+    background: url("../images//logo_bg.png") left top no-repeat, url("../images//search_bg.png") right top no-repeat;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+}
+
+#banner a {
+    background-color: var(--web-pink);
+    color: white;
+    font-family: 'Changa One', cursive;
+    font-size: 2rem;
+}
+
+#banner .carousel-item {
+    min-height: 15rem;
+    padding-left: 0;
+}
+
+#banner .carousel-indicators {
+    list-style-type: none;
+}
+
+#banner .carousel-indicators li {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 1.2rem;
+    border: none;
+    margin: 0 0.25rem;
+    counter-increment: none;
+    position: relative;
+}
+
+#banner .carousel-indicators li span {
+    position: absolute;
+    top: 0.3rem;
+    left: 0.3rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.6rem;
+    border: none;
+    text-align: left;
+    text-indent: -999px;
+}
+
+#banner .carousel-indicators li.active span {
+    background-color: var(--web-green);
+}
+
+/* products */
+#products .card-img-top {
+    width: 150px
+}
+
+#products h5 {
+    font-family: 'Changa One', cursive;
+    font-size: 1.5rem;
+}
+
+#products .card-link {
+    color: var(--web-blue)
+}
+
+#products .card-text {
+    color: var(--web-primary)
+}
+
+/* About us */
+#about-us,
+#about-us .card {
+    background-color: var(--web-pink);
+}
+
+#about-us .card-title {
+    color: white;
+    font-family: 'Changa One', cursive;
+    /* font-size: 4rem; */
+}
+
+#about-us .title-about-us {
+    font-size: 4rem;
+}
+
+#about-us .title-signup {
+    font-size: 2rem;
+}
+
+#about-us .card-link {
+    color: var(--web-blue)
+}
+
+#about-us p.card-text {
+    color: var(--web-primary)
+}
+
+#about-us .card:last-child {
+    border: var(--web-primary) dashed 4px
+}
+
+#about-us .card:last-child label {
+    color: var(--web-primary)
+}
+
+#about-us .card:last-child button {
+    color: white;
+    font-family: 'Changa One', cursive;
+    font-size: 1.2rem;
+}
+
+/* News */
+#news .dec {
+    width: 100px;
+    color: white;
+    padding: 5px;
+    border-radius: 20px;
+    background-color: var(--web-green);
+}
+
+#news .card-text {
+    color: var(--web-primary)
+}
+
+#news a {
+    color: var(--web-blue)
+}
+
+/* Footer */
+#footer {
+    height: 8rem;
+    background-image: url('/images/bg-footer.gif');
+}
+
+#footer .row {
+    color: white;
+}
+
+#footer .footer-mask {
+    color: var(--web-primary)
+}
+
+#footer .menu-footer:hover {
+    color: var(--web-pink)
+}
+
+/* Modal login */
+#form-login button[type='submit'] {
+    background-color: var(--web-blue);
+    color: white
+}
