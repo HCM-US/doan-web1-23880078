@@ -11,7 +11,6 @@ async function loadData( request_api, type ) {
     var source = document.getElementById( type + "-template" ).innerHTML;
     var template = Handlebars.compile( source );
     var context = { data: data };
-    console.log( template( context ) );
 
     document.getElementById( type ).innerHTML = template( context );
 }

@@ -25,6 +25,22 @@ h1 {
     font-weight: 900;
 }
 
+.text-blue {
+    color: var(--web-blue)
+}
+
+.text-green {
+    color: var(--web-green)
+}
+
+.text-pink {
+    color: var(--web-pink)
+}
+
+.cusor-pointer {
+    cursor: pointer;
+}
+
 /* Header */
 #menu-header a {
     display: block;
@@ -269,11 +285,24 @@ h1 {
     color: var(--web-primary);
 }
 
-#testimonials .content-testimonials {
+#testimonials .content-testimonials,
+#aboutus .card-text {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
+    /* -webkit-line-clamp: 5; */
     overflow: hidden;
     text-overflow: ellipsis;
     height: auto;
 }
+
+#testimonials .content-testimonials {
+    -webkit-line-clamp: 5;
+}
+
+#aboutus .card-text {
+    -webkit-line-clamp: 15;
+}
+
+/* Gallery */
+
+.filter {}
