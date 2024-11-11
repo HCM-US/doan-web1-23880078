@@ -35,7 +35,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="menu-header">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="index.html" aria-current="page">Home
                             </a>
                         </li>
@@ -45,7 +45,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="gallery.html" aria-current="page">Gallery</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="blogs.html" aria-current="page">Blogs
                                 <span class="visually-hidden">(current)</span>
                             </a>
@@ -54,8 +54,9 @@
                             <a class="nav-link" href="contacts.html" aria-current="page">Contacts</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" aria-current="page" data-bs-toggle="modal"
+                            <a class="nav-link login" href="#" aria-current="page" data-bs-toggle="modal"
                                 data-bs-target="#modal-login">Login</a>
+                            <a class="nav-link logout" href="#" onclick="logout()">Logout</a>
                         </li>
                     </ul>
                     <form class="d-flex my-2 my-lg-0 border rounded-pill" id="form-search">
@@ -69,9 +70,26 @@
         </nav>
     </header>
 
-    <section class="container py-5">
-        <h1>Blogs</h1>
-    </section>
+    <div id="detail">
+        <section class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="mb-5">Blogs</h1>
+                    <div class="" id="blogs">
+                        <!-- DOM blogs -->
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h1 class="mb-5">Categories</h1>
+                    <div class="" id="blogs-category">
+                        <!-- DOM blogs-category -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="" id="comment-blog"></div>
 
     <!-- footer -->
     <footer id="footer" class="container-fluid">
@@ -82,7 +100,8 @@
                 <a href="gallery.html" class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6">Gallery</a>
                 <a href="blogs.html" class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6">Blogs</a>
                 <a href="contacts.html" class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6">Contacts</a>
-                <a class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6">Login</a>
+                <a class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6 login">Login</a>
+                <a class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6 logout" onclick="logout()">Logout</a>
             </div>
             <div class="footer-mask">Web1 @ 2024 by Huỳnh Huệ Thơm - 23880078</div>
         </div>
@@ -96,32 +115,25 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="post" id="form-login">
+                    <form action="#" method="post" id="form-login" onsubmit="login(event)">
                         <h3 class="text-center">Login Form</h3>
                         <div class="mb-3">
-                            <input type="text" name="username" id="username" placeholder="Username"
-                                class="form-control">
+                            <input type="text" name="username" id="username" placeholder="Username" class="form-control"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <input type="text" name="password" id="password" placeholder="Password"
+                            <input type="password" name="password" id="password" placeholder="Password"
                                 class="form-control">
                         </div>
                         <button type="submit" class="form-control">Login</button>
                     </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer justify-content-center">
+                    <div class="text-danger" id="errorMessage"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Optional: Place to the bottom of scripts -->
-    <script>
-        const myModal = new bootstrap.Modal(
-            document.getElementById( "modalId" ),
-            options,
-        );
-    </script>
-
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -132,7 +144,139 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script src="js/handlebars-pagination-helper.js"></script>
     <script src="js/23880078.js"></script>
+
+
+    <script id="blogs-category-template" type="text/x-handlebars-template">
+        {{#each data}}
+        <div class="d-flex align-content-end mb-2 cusor-pointer" onclick='loadData( "blogs/categories/{{id}}?page=1", "blogs" )'>
+            <div class="circle-icon">
+                <i class="fa-solid fa-arrow-right icon-category"></i>
+            </div>
+            <strong class="text-black-50">{{name}}</strong>
+        </div>
+        {{/each}}
+    </script>
+
+    <script id="blogs-template" type="text/x-handlebars-template">
+        {{#each data.data}}
+         <h3>{{name}}</h3>
+         <strong class="text-black-50">by {{author}} in <span class="text-blue">Blog.{{id}}</span> on {{formatDate date}}</strong>
+         <div class="row py-3">
+             <div class="col-md-4">
+                 <img src="{{thumbpath}}" alt="" class="img-thumbnail">
+             </div>
+             <div class="col-md-8">
+                 <div class="text-black-50 mb-3 sumary-blog">{{summary}}</div>
+                 <a href="#" class="text-blue" onclick='loadData( "blogs/{{id}}", "detail" )'>Read more</a>
+             </div>
+         </div>
+        {{/each}}
+
+        {{#pagination data.currentPage data.pageCount}}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+            {{#each pages}}
+            {{#if isCurrent}}
+                <li class="page-item active" aria-current="page" 
+                    onclick='loadData( "blogs?page={{page}}", "blogs")'>
+                    <a class="page-link"href="#">{{isCurrent}}</a>
+                </li>
+            {{/if}}
+            {{#unless isCurrent}}
+                <li class="page-item" onclick='loadData( "blogs?page={{page}}", "blogs" )'><a class="page-link"
+                        href="#">{{page}}</a></li>
+            {{/unless}}
+            {{/each}}
+            </ul>
+        </nav>
+        {{/pagination}}
+    </script>
+
+    <script id="detail-template" type="text/x-handlebars-template">
+        <section class="container-fluid py-5">
+            {{#each data}}
+            <div class="container">
+                 <h1 class="mb-5">Blogs</h1>
+                <div class="row pb-5">
+                    <div class="col-sm-12">
+                        <h3 class="">{{name}}</h3>
+                        <div class="pb-3">
+                            <strong class="text-black-50">by {{author}} in <span class="text-blue">Blog.{{id}}</span> on
+                                {{formatDate date}}</strong>
+                        </div>
+                        <img src="{{imagepath}}" alt="" class="float-start img-thumbnail me-3">
+                        <div class="text-black-50">{{{description}}}</div>
+
+                    </div>
+                </div>
+
+                <h3>Leave your comments</h3>
+                <h3>Post comment as a guest</h3>
+                <form class="row text-black-50">
+                    <div class="col-md-4 mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Name (Required)</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email</label>
+                        <input type="email" class="form-control" aria-describedby="emailHelp">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <textarea rows="3" type="text" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                         <select class="form-control">
+                             <option selected>True</option>
+                             <option value="1">False</option>
+                         </select>
+                    </div>
+                    <div class="col-md-6 mb-3 text-black-50 d-flex align-items-center">
+                        Agree to terms and coditions.
+                    </div>
+                    <div class="col-md-4 mb-3 text-blue d-flex justify-content-end align-items-center">
+                        Submit comment
+                    </div>
+                    <div class="col-md-12 bg-black mb-3 d-flex justify-content-start align-items-center">
+                        <div class="text-white">COMMENTS</div>
+                    </div>
+                </form>
+                {{#each comments}}
+               <div class="text-black-50">
+                 <strong>{{name}}</strong>
+                 <div class="text-blue">{{formatDate date}}</div>
+                 <div>{{summary}}</div>
+                 <hr class=""/>
+               </div>
+                {{/each}}
+            </div>
+            {{/each}}
+        </section>
+    </script>
+
+    <script>
+        (
+            async function () {
+                checkLogin()
+                Handlebars.registerHelper( 'formatDate', function ( date ) {
+                    let formatDate = new Date( date )
+                    let option = {
+                        weekday: 'short',
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        timeZoneName: 'short',
+                    }
+
+                    return formatDate.toLocaleDateString( 'en-US', option )
+                } )
+                await loadData( "blogs-categories", "blogs-category" );
+                await loadData( "blogs?page=1", "blogs" );
+            }
+        )();
+    </script>
 </body>
 
 </html>
