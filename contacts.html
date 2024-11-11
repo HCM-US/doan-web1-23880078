@@ -55,7 +55,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link login" href="#" aria-current="page" data-bs-toggle="modal"
-                                data-bs-target="#modal-login">Login</a>
+                                data-bs-target="#modal-login" style="display: none;">Login</a>
                             <a class="nav-link logout" href="#" onclick="logout()">Logout</a>
                         </li>
                     </ul>
@@ -133,7 +133,7 @@
                 <a href="gallery.html" class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6">Gallery</a>
                 <a href="blogs.html" class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6">Blogs</a>
                 <a href="contacts.html" class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6">Contacts</a>
-                <a class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6 login">Login</a>
+                <a class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6 login" style="display: none;">Login</a>
                 <a class="menu-footer nav-link col-lg-2 col-md-4 col-sm-6 logout" onclick="logout()">Logout</a>
             </div>
             <div class="footer-mask">Web1 @ 2024 by Huỳnh Huệ Thơm - 23880078</div>
@@ -184,6 +184,14 @@
     <script src="js/map.js"></script>
 
     <script src="js/23880078.js"></script>
+
+    <script>
+        (
+            async function () {
+                checkLogin()
+            }
+        )();
+    </script>
 </body>
 
 </html>
